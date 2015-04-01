@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html x-manifest="appcache.manifest">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <title>El Sagrado Corán</title>
+    <script>
+      document.getElementsByTagName('html')[0].style.opacity = 0;
+      document.addEventListener('load', function(){ 
+        document.getElementsByTagName('html')[0].style.opacity = 1;
+      }, true);
+    </script>
+    <link id="siteicon" rel="icon" href="img/elsagradocoran16.png"/>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.css">
+    <link rel="stylesheet" href="css/framework7.themes.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/mozillasocialservice.css">
+  </head>
+  <body class="theme-blue layout-dark">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <!-- Navbar inner for Index page-->
+          <div data-page="index" class="navbar-inner">
+            <!-- We have home navbar without left link-->
+            <div class="center sliding">Capítulos</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"></a>
+            </div>
+          </div>
+          <!-- Navbar inner for Chapter page-->
+          <div data-page="chapter" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">El Inicio</div>
+          </div>
+          <!-- Navbar inner for ChangeLog page-->
+          <div data-page="changelog" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">ChangeLog</div>
+          </div>
+          <!-- Navbar inner for Help page-->
+          <div data-page="help" class="navbar-inner cached">
+            <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">Ayuda</div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="list-block virtual-list">
+                <!-- keep it empty -->
+              </div>
+            </div>
+          </div>
+          <!-- ChangeLog Page-->
+          <div data-page="changelog" class="page cached">
+            <div class="page-content">
+              <div class="content-block">
+                <h3><a class="anchor" name="v-0-8-stable-26-03-15" href="#v-0-8-stable-26-03-15"><i class="anchor-icon"></i></a>v 0.8 stable <strong>26.03.15</strong></h3>
+                <ul>
+                  <li>Add a comment before forwarded messages</li>
+                  <li>Hashtags suggestions in new message and search fields (based on recent searches)</li>
+                  <li>Button to jump back to a reply after viewing the original message</li>
+                  <li>Add people to groups by username</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-26-dev-26-03-15" href="#v-0-7-26-dev-26-03-15"><i class="anchor-icon"></i></a>v 0.7.26 dev <strong>26.03.15</strong></h3>
+                <ul>
+                  <li>Some bugfixes</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-25-dev-25-03-15" href="#v-0-7-25-dev-25-03-15"><i class="anchor-icon"></i></a>v 0.7.25 dev <strong>25.03.15</strong></h3>
+                <ul>
+                  <li>Add people to groups by username</li>
+                  <li>Copy @username from profile context menu</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-24-dev-24-03-15" href="#v-0-7-24-dev-24-03-15"><i class="anchor-icon"></i></a>v 0.7.24 dev <strong>24.03.15</strong></h3>
+                <ul>
+                  <li>Forward messages with comment or sticker before them</li>
+                  <li>Recent hashtags autocomplete in message and search fields</li>
+                  <li>Move from reply to original message and back</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-23-stable-20-03-15" href="#v-0-7-23-stable-20-03-15"><i class="anchor-icon"></i></a>v 0.7.23 stable <strong>20.03.15</strong></h3>
+                <ul>
+                  <li>Reply to specific messages in groups</li>
+                  <li>Mention @usernames in groups to notify multiple users</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-22-dev-20-03-15" href="#v-0-7-22-dev-20-03-15"><i class="anchor-icon"></i></a>v 0.7.22 dev <strong>20.03.15</strong></h3>
+                <ul>
+                  <li>Critical bug in messages delivery fixed</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-21-dev-19-03-15" href="#v-0-7-21-dev-19-03-15"><i class="anchor-icon"></i></a>v 0.7.21 dev <strong>19.03.15</strong></h3>
+                <ul>
+                  <li>Reply to specific messages in groups</li>
+                  <li>Mention @usernames in groups to notify multiple users</li>
+                </ul>
+                <h3><a class="anchor" name="v-0-7-20-stable-13-03-15" href="#v-0-7-20-stable-13-03-15"><i class="anchor-icon"></i></a>v 0.7.20 stable <strong>13.03.15</strong></h3>
+                <ul>
+                  <li>Lock your app with a passcode</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Help Page-->
+          <div data-page="help" class="page cached">
+            <div class="page-content">
+              <div class="content-block">
+              hi
+              </div>
+            </div>
+          </div>
+          <!-- Chapter Page-->
+          <div data-page="chapter" class="page cached">
+            <div class="page-content" contextmenu="mymenu">
+              <!-- This is just a normal HTML5 context menu -->
+              <menu type="context" id="mymenu">
+                <menu label="Compartir texto en...">
+                  <menuitem label="Twitter" icon="https://abs.twimg.com/favicons/favicon.ico"
+                      onclick="share('twitter');"></menuitem>
+                  <menuitem label="Tumblr" icon="https://secure.assets.tumblr.com/images/favicons/favicon.ico"
+                      onclick="share('tumblr');"></menuitem>
+                  <menuitem label="LinkedIn" icon="https://static.licdn.com/scds/common/u/images/logos/favicons/v1/favicon.ico"
+                      onclick="share('linkedin');"></menuitem>
+                  <menuitem label="Correo" icon="http://www.twitter.com/favicons/favicon.png"
+                      onclick="share('mailto');"></menuitem>
+<!--                   <menuitem label="Facebook" icon="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAAX0lEQVQ4jWP4%2F%2F8%2FAyUYTFhHzjgDxP9JxGeQDSBVMxgTbUBCxer%2Fr999%2BQ8DJBuArJksA9A10s8AXIBoA0B%2BR%2FY%2FjD%2BEwoBoA1yT5v3PbdmCE8MAshhID%2FUMoDgzUYIBj0Cgi7ar4coAAAAASUVORK5CYII%3D"
+                      onclick="share('facebook')"></menuitem> -->
+                </menu>
+              </menu>
+              <div class="content-block">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Toolbar-->
+        <div class="toolbar">
+          <div class="toolbar-inner"><a href="#help" class="link">Ayuda</a><a href="#changelog" class="link">v1.1</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <!-- Path to Keen.io Library JS-->
+    <script type="text/javascript" src="js/keen.js"></script>
+    <!-- Path to Quran Data JS-->
+    <script type="text/javascript" src="js/quran-data.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/mozillasocialservice.js"></script>
+  </body>
+</html>
