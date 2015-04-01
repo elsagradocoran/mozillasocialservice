@@ -1,4 +1,8 @@
-# Mozilla Social Service
+# El Sagrado Corán
+
+Que lleve luz y buenas noticias al corazón de todo aquel que lo lea. 
+
+Que la paz sea con todos ustedes.
 
 Herramienta creada para Mozilla Social Service (Social API)
 
