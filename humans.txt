@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Alexander J. Salas B. (ذو القرنين) -- Developer -- @ajsb85
+
+# THANKS
+
+    Tanzil Project
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Apache Server Configs, Framework7
