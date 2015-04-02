@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html x-manifest="appcache.manifest">
+<html x-manifest="appcache.manifest" class="no-js" lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
@@ -10,6 +10,7 @@
         document.getElementsByTagName('html')[0].style.opacity = 1;
       }, true);
     </script>
+    <link type="text/plain" rel="author" href="humans.txt" />
     <link id="siteicon" rel="icon" href="img/elsagradocoran16.png"/>
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.css">
@@ -172,5 +173,14 @@
     <script type="text/javascript" src="js/quran-data.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/mozillasocialservice.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-54482885-1','auto');ga('send','pageview');
+    </script>
   </body>
 </html>
