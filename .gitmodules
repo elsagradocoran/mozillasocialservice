@@ -1,0 +1,3 @@
+[submodule "js/qurandata"]
+	path = js/qurandata
+	url = https://github.com/elsagradocoran/qurandata
