@@ -1,3 +1,17 @@
+Que lleve luz y buenas noticias al corazón de todo aquel que lo lea.
+
+Herramienta creada para Mozilla Social Service (Social API)
+
+IRC #socialdev
+
+Servicios actuales disponibles: https://activations.mozilla.com
+
+Información para desarrolladores: https://developer.mozilla.org/es/docs/Social_API
+
+Que la paz sea con todos ustedes.
+
+ToDo:
+
 ## How to contribute
 There are many ways that you can contribute to the El Sagrado Corán project:
 * Submit a bug
@@ -21,3 +35,5 @@ Before submitting a feature or substantial code contribution please discuss it w
 
 ## Contributing to README and Wiki
 You do not need to sign a Contribution License Agreement if you are just contributing to the README or the Wiki. By submitting a contribution to the README or the Wiki, you are contributing it under the [Creative Commons CC0 1.0 Universal Public Domain Dedication](http://creativecommons.org/publicdomain/zero/1.0/).
+
+
