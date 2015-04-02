@@ -95,3 +95,23 @@ p {
 .list-block .item-link {
     transition-duration: 10ms;
 }
+
+div[data-page="help"] p {
+    text-indent: 0.7rem;
+    -moz-user-select: none;
+}
+
+div[data-page="help"] .content-block img {
+  border: 1px solid #b4922f;
+  padding: 1px;
+}
+
+div[data-page="help"] .content-block h3 {
+  text-align: center;
+  -moz-user-select: none;
+}
+
+div[data-page="help"] .content-block a {
+  cursor: pointer;
+  -moz-user-select: none;
+}

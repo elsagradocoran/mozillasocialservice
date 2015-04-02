@@ -33,6 +33,48 @@ function addElement (element, index, array) {
 
 $$(document).on('pageReinit', render);
 $$(document).on('pageInit', render);
+$$(document).on('pageInit', changelog);
+
+function changelog (e) {
+  var page = e.detail.page;
+  if (page.name === 'changelog') {
+    $$.ajax({
+      dataType: 'json',
+      url: 'https://api.github.com/repos/elsagradocoran/mozillasocialservice/releases',
+      success: function (data, status, xhr) {
+          var html = '';
+          data.forEach(function (element, index, array) { 
+            var published_at = new Date(element.published_at);
+            var arrayOfLines = element.body.match(/[^\r\n]+/g);
+            var target_commitish;
+            switch (element.target_commitish) {
+              case "master":
+                target_commitish = 'dev';
+                break;
+              case "gh-pages":
+                target_commitish = 'release';
+                break;
+            }
+            html += '<h3>v'+element.tag_name+' '+target_commitish+' <strong>'+published_at.toLocaleDateString()+'</strong></h3>';
+            html += '<ul>';
+            arrayOfLines.forEach(function (element, index, array) {
+              html += element.replace(/^\* (.*)/gm, '<li>$1</li>');
+            }); 
+            html += '</ul>';
+            //console.log(element.prerelease);
+            //console.log(element.draft);
+            //console.log(element.name);
+          });
+          $$(page.container).find('.content-block').html(html);
+      },
+      statusCode: {
+        404: function (xhr) {
+          console.log('page not found');
+        }
+      }
+    }); 
+  }
+}
 
 function render(e){
 
@@ -137,6 +179,5 @@ function share(socialmedia){
       break;          
   }   
 }
-
 
 
