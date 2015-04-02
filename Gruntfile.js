@@ -7,10 +7,20 @@ module.exports = function(grunt) {
           'dist/app.min.js': ['js/qurandata/quran-data.js', 'js/framework7.js', 'js/mozillasocialservice.js']
         }
       }
+    },
+    'gh-pages': {
+      options: {
+        base: 'dist',
+        dotfiles: true
+      },
+      src: '**/*'
     }
   });
+  
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  // Publish to GitHub Pages with Grunt
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   // Default task(s).
   grunt.registerTask('default', ['uglify']);
