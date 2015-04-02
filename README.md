@@ -1,5 +1,7 @@
 # El Sagrado Corán
 
+Que lleve luz y buenas noticias al corazón de todo aquel que lo lea.
+
 ### Información
 
 Mejora tu experiencia Firefox, consigue más del Sagrado Corán.
@@ -118,3 +120,6 @@ Un rectángulo vertical de espacio de pantalla, posicionado al lado del contenid
 ##### Proveedor de servicio social (Social service provider)
 
 Un servicio web que proporciona una o más APIs al navegador para habilitar características sociales. Es definida en el navegador por un archivo estructurado de texto, que le dice al navegador cómo cargar recursos de JavaScript y HTML que trae sus funciones al navegador.
+
+
+######Que la paz sea con todos ustedes.
