@@ -28,7 +28,7 @@ body {
 }
 
 .navbar-inner, .toolbar-inner{
-  background: #b4922f linear-gradient(to right, #b4922f 0%, #f7e88a 50%, #b4922f 100%) repeat scroll 0% 0%;
+  background: #b4922f linear-gradient(to right, #b4922f 0%, #f7e88a 50%, #b4922f 100%) repeat scroll 0% 0%;  
   color: #005392;
   
   /* user-select: none; */
@@ -114,4 +114,34 @@ div[data-page="help"] .content-block h3 {
 div[data-page="help"] .content-block a {
   cursor: pointer;
   -moz-user-select: none;
+}
+
+
+
+.center.sliding{
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  position: absolute;
+  height: 44px;
+  transition-duration: 10ms;
+}
+
+.center.sliding div{
+  width: 100%;
+  top: 0px;
+  left: 100%;
+  height: 44px;
+  z-index: 1000;
+  text-align: center;
+  transition-duration: 10ms;
+}
+
+.navbar .left {
+  z-index: 100000;
+}
+
+#chapter {
+  transition-duration: 10ms;
+  background: transparent url("../img/framechapter.svg") no-repeat scroll center center;
 }

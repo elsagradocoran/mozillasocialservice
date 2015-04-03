@@ -34,10 +34,27 @@ function addElement (element, index, array) {
 
 $$(document).on('pageReinit', render);
 $$(document).on('pageInit', render);
-$$(document).on('pageInit', changelog);
 
-function changelog (e) {
+function render(e){
+  console.log(e);
   var page = e.detail.page;
+  if (page.name === 'index') {
+    var myList = QuranApp.virtualList('.list-block.virtual-list', {
+        items: reformattedArray
+    });
+  }
+  if (page.name === 'chapter') {
+    var count = page.query.index;
+    if (typeof count !== 'undefined') {
+      document.getElementById('chapter').textContent = QuranData.Sura[count][6];
+      var listHTML = '<ol>';
+      for (var i = 0; i < chapters[count].length; i++) {
+          listHTML += '<li><p>' + chapters[count][i].text + '</p></li>';
+      }
+      listHTML += '</ol>';
+      $$(page.container).find('.content-block').html(listHTML);
+    }
+  }
   if (page.name === 'changelog') {
     $$.ajax({
       dataType: 'json',
@@ -71,20 +88,6 @@ function changelog (e) {
         }
       }
     }); 
-  }
-}
-
-function render(e){
-
-  var page = e.detail.page;
-  if (page.name === 'chapter') {
-      var count = page.query.index;
-      var listHTML = '<ol>';
-      for (var i = 0; i < chapters[count].length; i++) {
-          listHTML += '<li><p>' + chapters[count][i].text + '</p></li>';
-      }
-      listHTML += '</ol>';
-      $$(page.container).find('.content-block').html(listHTML);
   }
 }
 
@@ -123,14 +126,11 @@ window.addEventListener("load", function() {
 });
 
 document.addEventListener("visibilitychange", function() {});
-
-
 document.querySelector('[data-page="chapter"] .page-content').addEventListener('scroll', function(ev) {}, false); 
 
 function share(socialmedia){
   var text = document.getSelection(),
       count = text.toString();
-          
   switch(socialmedia) {
     case 'facebook':
       goTo('//facebook.com/sharer/sharer.php?u=' + count + escape('\n#coran') );

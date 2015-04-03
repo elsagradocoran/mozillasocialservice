@@ -11,7 +11,9 @@ module.exports = function(grunt) {
     'gh-pages': {
       options: {
         base: 'dist',
-        dotfiles: true
+        dotfiles: true,
+        repo: 'https://' + process.env.GH_TOKEN + '@github.com/elsagradocoran/mozillasocialservice.git',
+        silent: true
       },
       src: '**/*'
     }
@@ -23,6 +25,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-gh-pages');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['uglify', 'gh-pages']);
 
 };
