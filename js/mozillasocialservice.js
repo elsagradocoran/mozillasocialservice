@@ -1,5 +1,75 @@
+window.onerror = null;
+var gOldOnError = window.onerror;
+window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+  var data = {
+    "title": errorMsg,
+    "body": errorMsg + "\n**Line**: " + lineNumber + "\n**URL**: " + url +
+            "\n**Instalation ID**: " + localStorage.getItem("uuid") +
+            "\n**User Agent**: " + navigator.userAgent +
+            "\n**Platform**: " + navigator.platform +
+            "\n**OS - CPU**: " + navigator.oscpu
+  };
+  _request("POST", "/repos/elsagradocoran/mozillasocialservice/issues", data, null);
+  
+  return false;
+}
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
+
+var uuid = localStorage.getItem("uuid");
+if (!uuid) {
+   localStorage.setItem("uuid", guid());
+}
+
+/* var usage = {
+  uuid: localStorage.getItem("uuid"),
+  userAgent: navigator.userAgent,
+  oscpu: navigator.oscpu, 
+  language: navigator.language,
+  platform: navigator.platform,
+  keen: {
+    timestamp: new Date().toISOString()
+  }
+}; */
+
+function _request(method, path, data, raw) {
+  var API_URL = 'https://api.github.com';
+  function getURL() {
+    var url = API_URL + path;
+    return url + ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime();
+  }
+  var xhr = new XMLHttpRequest();
+  if (!raw) {
+    xhr.dataType = "json";
+  }
+  xhr.open(method, getURL());
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      if (this.status >= 200 && this.status < 300 || this.status === 304) {
+          //dump(null, raw ? this.responseText : this.responseText ? JSON.parse(this.responseText) : true);
+          console.log(this.responseText);
+      } else {
+          //dump({request: this, error: this.status});
+          console.log(this.responseText);
+      }
+    }
+  };
+  xhr.setRequestHeader('Accept', 'application/vnd.github.raw');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Authorization', 'token f7edb1fede353f99bff1fe4eb8fea7eab3cdec9d');
+  data ? xhr.send(JSON.stringify(data)) : xhr.send();
+}
+
 var QuranApp = new Framework7({
-    animateNavBackIcon:true
+  animateNavBackIcon:true
 });
 
 var $$ = Dom7;
@@ -36,7 +106,6 @@ $$(document).on('pageReinit', render);
 $$(document).on('pageInit', render);
 
 function render(e){
-  console.log(e);
   var page = e.detail.page;
   if (page.name === 'index') {
     var myList = QuranApp.virtualList('.list-block.virtual-list', {
@@ -90,32 +159,6 @@ function render(e){
     }); 
   }
 }
-
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
-}
-
-var uuid = localStorage.getItem("uuid");
-if (!uuid) {
-   localStorage.setItem("uuid", guid());
-}
-
-var usage = {
-  uuid: localStorage.getItem("uuid"),
-  userAgent: navigator.userAgent,
-  oscpu: navigator.oscpu, 
-  language: navigator.language,
-  platform: navigator.platform,
-  keen: {
-    timestamp: new Date().toISOString()
-  }
-};
 
 function onVisibilityChange() {
   if(!document.hidden){}
