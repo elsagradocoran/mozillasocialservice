@@ -230,3 +230,4 @@ sauce_connect.log
 npm-debug.log
 
 bower_components/
+resources/

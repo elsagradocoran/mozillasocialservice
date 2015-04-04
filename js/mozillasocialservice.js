@@ -1,3 +1,5 @@
+var baselocation = "https://localhost";
+
 window.onerror = null;
 var gOldOnError = window.onerror;
 window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
@@ -9,7 +11,7 @@ window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
             "\n**Platform**: " + navigator.platform +
             "\n**OS - CPU**: " + navigator.oscpu
   };
-  _request("POST", "/repos/elsagradocoran/mozillasocialservice/issues", data, null);
+  //_request("POST", "/repos/elsagradocoran/mozillasocialservice/issues", data, null);
   
   return false;
 }
@@ -55,10 +57,10 @@ function _request(method, path, data, raw) {
     if (this.readyState == 4) {
       if (this.status >= 200 && this.status < 300 || this.status === 304) {
           //dump(null, raw ? this.responseText : this.responseText ? JSON.parse(this.responseText) : true);
-          console.log(this.responseText);
+          //console.log(this.responseText);
       } else {
           //dump({request: this, error: this.status});
-          console.log(this.responseText);
+          //console.log(this.responseText);
       }
     }
   };
@@ -69,7 +71,7 @@ function _request(method, path, data, raw) {
 }
 
 var QuranApp = new Framework7({
-  animateNavBackIcon:true
+  animateNavBackIcon: true
 });
 
 var $$ = Dom7;
@@ -166,7 +168,17 @@ function onVisibilityChange() {
 
 window.addEventListener("load", function() {
   onVisibilityChange();
+  onLoad();
 });
+
+function doShare() {
+  navigator.mozSocial.share({
+    url: "https://elsagradocoran.org",
+    image: "https://mozorg.cdn.mozilla.net/media/img/home/firefox.png",
+    title: "El Sagrado Corán",
+    description: "Que lleve luz y buenas noticias al corazón de todo aquel que lo lea."
+  });
+}
 
 document.addEventListener("visibilitychange", function() {});
 document.querySelector('[data-page="chapter"] .page-content').addEventListener('scroll', function(ev) {}, false); 
@@ -192,5 +204,116 @@ function share(socialmedia){
       break;          
   }   
 }
+
+
+// this notify function is used for manual testing.  We tell the worker to
+// call an api for us so we can:
+// 1. make the worker request a chat window is opened
+// 2. make the worker send a notification
+function notify(type) {
+  var port = navigator.mozSocial.getWorker();
+  // XXX shouldn't need a full url here.
+  switch(type) {
+    case "link":
+      data = {
+        id: "foo",
+        type: null,
+        icon: "https://localhost/mozillasocialservice/img/elsagradocoran32.png",
+        body: "This is a cool link",
+        action: "link",
+        actionArgs: {
+          toURL: baselocation
+        }
+      }
+      port.postMessage({topic:"social.notification-create", data: data});
+      break;
+    case "chat-request":
+      port.postMessage({topic:"social.request-chat", data: baselocation+"/chatWindow.html?id="+(chatters++)});
+      break;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+function onLoad() {
+  //dump("sidebar onload called\n");
+  var worker = navigator.mozSocial.getWorker();
+  //var data = document.cookie.split("=",2)[1];
+  setTimeout(function() {
+    worker.port.postMessage({topic: 'social.manifest-get'});
+  }, 0);
+}
+window.onunload = function() {
+  //dump("sidebar unLoad called\n");
+}
+
+
+ //document.cookie="userdata="+JSON.stringify(userdata);
+messageHandlers = {
+  "worker.connected": function(data) {
+    // our port has connected with the worker, do some initialization
+    // worker.connected is our own custom message
+    var worker = navigator.mozSocial.getWorker();
+    worker.port.postMessage({topic: "broadcast.listen", data: true});
+  },
+  "social.user-profile": function(data) {
+    if (data.userName)
+      userIsConnected(data);
+    else
+      userIsDisconnected();
+  },
+  'social.page-mark': function(data) {
+    $("#shared").text(data.marked ? data.url : "");
+  },
+  'social.user-recommend': function(data) {
+    $("#shared").text(data.url);
+  },
+  'social.user-unrecommend': function(data) {
+    $("#shared").text("");
+  },
+  'social.manifest': function(data) {
+    $("#version").text("version: "+data.version);
+  }
+};
+
+navigator.mozSocial.getWorker().port.onmessage = function onmessage(e) {
+    //dump("SIDEBAR Got message: " + e.data.topic + " " + e.data.data +"\n");
+    var topic = e.data.topic;
+    var data = e.data.data;
+    if (messageHandlers[topic])
+        messageHandlers[topic](data);
+    if (topic && topic == "social.port-closing") {
+      dump("!!!!!!!!! port has closed\n");
+    }
+};
+navigator.mozSocial.getWorker().port.postMessage({topic: "broadcast.listen", data: true});
+//dump("**** sidebar portid is "+navigator.mozSocial.getWorker().port._portid+"\n");
+// here we ask the worker to reload itself.  The worker will send a reload
+// message to the Firefox api.
+function workerReload() {
+  var worker = navigator.mozSocial.getWorker();
+  worker.port.postMessage({topic: "worker.reload", data: true});
+}
+function updateManifest() {
+  var worker = navigator.mozSocial.getWorker();
+  worker.port.postMessage({topic: "worker.update", data: true});
+}
+
+
+// we open a chat panel, receiving a reference to the chat window in our
+// callback
+var chatWin;
+function openChat(event) {
+  navigator.mozSocial.openChatWindow("./chatWindow.html?id="+(chatters++), function(win) {
+	dump("chat window is opened "+win+"\n");
+    chatWin = win;
+  });
+}
+
+// just some test debug output for some events
+window.addEventListener("scroll", function(e) {
+  dump("scrolling sidebar...\n");
+}, false);
 
 
