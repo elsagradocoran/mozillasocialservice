@@ -2,6 +2,9 @@
 
 Que lleve luz y buenas noticias al corazón de todo aquel que lo lea.
 
+[![Build Status: Linux](https://api.travis-ci.org/elsagradocoran/mozillasocialservice.svg)](https://travis-ci.org/elsagradocoran/mozillasocialservice)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 ### Información
 
 Mejora tu experiencia Firefox, consigue más del Sagrado Corán.
