@@ -1,3 +1,5 @@
+//Added Integram.org Support
+
 var baselocation = "https://localhost";
 
 window.onerror = null;
